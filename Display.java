@@ -9,16 +9,16 @@ public class Display {
     public Display runLoop() {
         String input;
         while (true) {//A while loop that will continue the menu options until the user enters "quit"
-            System.out.println("\n(VIEW).View (ADD).Add (EDIT).Edit (REMOVE).Remove (SEARCH).Search (LOAD).Load (SAVE).Save (QUIT).Quit");//This will display the menu options
+            System.out.println("\n(1:).View (2:).Add (3:).Edit (4:).Remove (5:).Search (6:).Load (7:).Save (8:).Quit");//This will display the menu options
             input = ask("Choose: ");
-            if (input.equals("Quit")) break;
-            if (input.equals("View")) s.Info.values().forEach(System.out::println);
-            else if (input.equals("Add")) setPlayerData();
-            else if (input.equals("Edit")) editPlayer();
-            else if (input.equals("Remove")) System.out.println(s.removePlayer(ask("Remove Player:")) ? "Removed." : "Not found.");
-            else if (input.equals("Search")) System.out.println(getPlayerData(ask("Search Player: ")));
-            else if (input.equals("Load")) System.out.println(s.loadFromFile(ask("File to Load: ")) ? "Loaded." : "Failed.");
-            else if (input.equals("Save")) System.out.println(s.save() ? "Saved." : "Failed.");
+            if (input.equals("8")) break;
+            if (input.equals("1")) s.Info.values().forEach(System.out::println);
+            else if (input.equals("2")) setPlayerData();
+            else if (input.equals("3")) editPlayer();
+            else if (input.equals("4")) System.out.println(s.removePlayer(ask("Remove Player:")) ? "Removed." : "Not found.");
+            else if (input.equals("5")) System.out.println(getPlayerData(ask("Search Player: ")));
+            else if (input.equals("6")) System.out.println(s.loadFromFile(ask("File to Load: ")) ? "Loaded." : "Failed.");
+            else if (input.equals("7")) System.out.println(s.save() ? "Saved." : "Failed.");
             else System.out.println("Invalid choice, please try again.");
         }
         return this;
@@ -46,9 +46,27 @@ public class Display {
             System.out.println("Player not found.");
             return this;
         }
-        String avatar = ask("New Avatar: ");
-        int level = parseInt("New Level: ");
-        int worldrank = parseInt("New World Ranking: ");
+        Info current = s.getPlayer(player); //Updated code will allow users to select which option to make changes
+        System.out.println("Please choose: ");
+        System.out.println("(A or a): Avatar Name");
+        System.out.println("(L or l): Level");
+        System.out.println("(W or w): WorldRank");
+        String choose = ask("Please choose: ");
+
+        String avatar = current.getAvatar(); //Receives info for changes
+        int level = current.getLevel();
+        int worldrank = current.getWorldRanking();
+
+        switch (choose) {
+            case "A", "a": avatar = ask("New Avatar: ");
+                break;
+            case "L", "l": level = parseInt("New Level: ");
+                break;
+            case "W", "w": worldrank = parseInt("New World Ranking: ");
+                break;
+            default: System.out.println("Invalid choice.");
+                return this;
+        }
         Info updated = new Info(player, avatar, level, worldrank);
         s.updatePlayer(player, updated);
         System.out.println("Updated.");

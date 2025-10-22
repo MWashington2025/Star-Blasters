@@ -4,6 +4,10 @@ public class Search extends Edit {//Extends to the "Edit" class for uses
         loadFromFile(file);
     }
 
+    public Search() {
+
+    }
+
     public boolean hasPlayer(String name) {//Checks to see if player is in the system
         return Info.containsKey(name.toLowerCase());
     }

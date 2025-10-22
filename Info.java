@@ -12,6 +12,10 @@ public class Info {//Attributes for player's info
         this.WorldRanking = Ranking;
         this.Qualified = WorldRanking <= 500;
     }
+
+    public Info() { //Constructor created for the Unit Test
+    }
+
     public String getPlayerName() {
         return PlayerName;
     }
@@ -31,6 +35,19 @@ public class Info {//Attributes for player's info
     }
     public String toFile() {//Returns user data from a file as a String
         return PlayerName + "-" + AvatarName + "-" + ClassLevel + "-" + WorldRanking + "-" + Qualified;
+    }
+
+    public String getAvatar() {
+
+        return "";
+    }
+
+    public int getLevel() {
+        return 0;
+    }
+
+    public int getWorldRanking() {
+        return 0;
     }
 }
 
