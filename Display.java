@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 
 public class Display {
@@ -83,6 +85,7 @@ public class Display {
     public static void main(String[] args) {//Main method
         new Display("players.txt").runLoop();
     }
+
 }
 
 
