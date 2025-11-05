@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 public class Menu extends JFrame {
     private Display Menu; // Extends the "Display.java" Class
+    StringBuilder sb = new StringBuilder();
 
     public Menu() {
         Menu = new Display("players.txt"); //Extends the Display information
@@ -42,7 +43,6 @@ public class Menu extends JFrame {
         quitButton.addActionListener(e -> System.exit(0));
     }
     private void viewPlayers() { //Allows users to view all players on the list
-        StringBuilder sb = new StringBuilder();
         Menu.s.Info.values().forEach(i -> sb.append(i.toString()).append("\n"));
         JOptionPane.showMessageDialog(this, sb.length() == 0 ? "No information available." : sb.toString());
     }
@@ -53,30 +53,50 @@ public class Menu extends JFrame {
             JOptionPane.showMessageDialog(this, "Player already exists."); //If the player is already on the list
             return;
         }
-        String avatar = JOptionPane.showInputDialog(this, "Enter a Avatar:"); //This section will display actions depending on whats selected
+        String avatar = JOptionPane.showInputDialog(this, "Enter a Avatar:"); //This section will display actions depending on what's selected
         int level = parseInt(JOptionPane.showInputDialog(this, "Enter a Level:"));
         int rank = parseInt(JOptionPane.showInputDialog(this, "Enter a World Ranking:"));
         Info i = new Info(name, avatar, level, rank);
         Menu.s.addPlayer(i);
         JOptionPane.showMessageDialog(this, "Player has been added.");
     }
-    private void editPlayer() { //Allows users to edit players to the list
-        String player = JOptionPane.showInputDialog(this, "Please enter player name to edit:");
-        if (player == null || !Menu.s.hasPlayer(player)) {
+    private void editPlayer() {
+        if (Menu.s.Info.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No players available to edit.");
+            return;
+        }
+        String[] playerNames = Menu.s.Info.keySet().toArray(new String[0]);
+        String player = (String) JOptionPane.showInputDialog(
+                this,"Select a player to edit:","Edit Player",
+                JOptionPane.PLAIN_MESSAGE,null,
+                playerNames, playerNames[0]);
+        if (player == null) return;
+        Info current = Menu.s.getPlayer(player);
+        if (current == null) {
             JOptionPane.showMessageDialog(this, "Player not found.");
             return;
         }
-        String[] options = {"Avatar", "Level", "WorldRank"}; //This section is for the edit part of the menu
-        String choice = (String) JOptionPane.showInputDialog(this, "Please select a field:", "Edit Info",
-                JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-        Info current = Menu.s.getPlayer(player);
+        String[] options = {"Avatar", "Class Level", "WorldRank"};
+        String choice = (String) JOptionPane.showInputDialog(
+                this,"Select field to edit:","Edit Info",
+                JOptionPane.PLAIN_MESSAGE,null,
+                options, options[0]);
+        if (choice == null) return;
         String avatar = current.getAvatar();
         int level = current.getLevel();
-        int rank = current.getWorldRanking();
-        if ("Avatar".equals(choice)) avatar = JOptionPane.showInputDialog(this, "New Avatar:", avatar);
-        else if ("Level".equals(choice)) level = parseInt(JOptionPane.showInputDialog(this, "New Level:", level));
-        else if ("WorldRank".equals(choice)) rank = parseInt(JOptionPane.showInputDialog(this, "New World Ranking:", rank));
-        Info updated = new Info(player, avatar, level, rank);
+        int Worldrank = current.getWorldRanking();
+        switch (choice) {
+            case "Avatar":
+                avatar = JOptionPane.showInputDialog(this, "New Avatar:", avatar);
+                break;
+            case "Class Level":
+                level = parseInt(JOptionPane.showInputDialog(this, "New Class Level:", level));
+                break;
+            case "WorldRank":
+                Worldrank = parseInt(JOptionPane.showInputDialog(this, "New World Ranking:", Worldrank));
+                break;
+        }
+        Info updated = new Info(player, avatar, level, Worldrank);
         Menu.s.updatePlayer(player, updated);
         JOptionPane.showMessageDialog(this, "Info has been updated.");
     }

@@ -22,6 +22,7 @@ public class Info {//Attributes for player's info
     public String getAvatarName() {
         return AvatarName;
     }
+    public int getClassLevel(){return ClassLevel;}
     public boolean isQualified() {//This section checks player's World Ranking and determines qualification or not
         if (WorldRanking > 500){
             return Boolean.parseBoolean("No");
@@ -39,15 +40,15 @@ public class Info {//Attributes for player's info
 
     public String getAvatar() {
 
-        return "";
+        return AvatarName;
     }
 
     public int getLevel() {
-        return 0;
+        return ClassLevel;
     }
 
     public int getWorldRanking() {
-        return 0;
+        return WorldRanking;
     }
 }
 
