@@ -13,7 +13,7 @@ public class Info {//Attributes for player's info
         this.Qualified = WorldRanking <= 500;
     }
 
-    public Info() { //Constructor created for the Unit Test
+    public Info(String name, String avatar, int level, int rank, String qualified) { //Constructor created for the Unit Test
     }
 
     public String getPlayerName() {
