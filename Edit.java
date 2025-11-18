@@ -1,15 +1,25 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * <b>This</b> public class is for utilizing a file to work with a file if the user uploads a file
+ */
+
 public abstract class Edit {
     protected String filename;
     final Map<String, Info> Info = new HashMap<>();//Stores users in a HashMap (data table)
+
+    /**
+     * <b>This</b> section will be utilized once a file has been selected and uploaded
+     * <b>The</b> "try" section will start to analyze the loaded file and insert data as if the user was inputting the info manually
+     * <b>The</b> "loaded" section will show messages depending on the conditions a loaded file has met
+     */
 
     public boolean loadFromFile(String file) {
         Info.clear();
         boolean loaded = false;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) { //Will read through and sort the information within the uploaded file
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] p = line.split("-");

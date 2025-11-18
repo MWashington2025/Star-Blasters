@@ -1,16 +1,21 @@
-public class Info {//Attributes for player's info
+/**
+ * <b>This</b> java class really focuses on being the building block for the code
+ * <b>Within</b> this class attributes are named and then constructors are then given to the attributes to act as placeholders
+ */
+
+public class Info {//Attributes for player's info, this is what going to be displayed
     String PlayerName;
     String AvatarName;
     int ClassLevel;
     int WorldRanking;
     boolean Qualified;
 
-    public Info(String Player, String Avatar, int Level, int Ranking) {//Constructor
-        this.PlayerName = Player;
-        this.AvatarName = Avatar;
-        this.ClassLevel = Level;
-        this.WorldRanking = Ranking;
-        this.Qualified = WorldRanking <= 500;
+    public Info(String Player, String Avatar, int Level, int Ranking) {//Constructor for the player's info (think as placeholders)
+        this.PlayerName = Player; //placeholder for player's name
+        this.AvatarName = Avatar; //placeholder for avatar's name
+        this.ClassLevel = Level;  //placeholder for player's class level
+        this.WorldRanking = Ranking; //placeholder for player's world ranking
+        this.Qualified = WorldRanking <= 500; //will analyze player's world ranking and make a decision depending on if level is more or less than 500
     }
 
     public Info(String name, String avatar, int level, int rank, String qualified) { //Constructor created for the Unit Test
@@ -22,7 +27,8 @@ public class Info {//Attributes for player's info
     public String getAvatarName() {
         return AvatarName;
     }
-    public int getClassLevel(){return ClassLevel;}
+    public int getClassLevel()
+    {return ClassLevel;}
     public boolean isQualified() {//This section checks player's World Ranking and determines qualification or not
         if (WorldRanking > 500){
             return Boolean.parseBoolean("No");
@@ -38,17 +44,17 @@ public class Info {//Attributes for player's info
         return PlayerName + "-" + AvatarName + "-" + ClassLevel + "-" + WorldRanking + "-" + Qualified;
     }
 
-    public String getAvatar() {
-
+    public String getAvatar() { //code will get and return a value for the avatar
         return AvatarName;
     }
 
-    public int getLevel() {
+    public int getLevel() { //code will get and return a value for the level
         return ClassLevel;
     }
 
-    public int getWorldRanking() {
+    public int getWorldRanking() { //code will get and return a value for the world level
         return WorldRanking;
     }
 }
+
 

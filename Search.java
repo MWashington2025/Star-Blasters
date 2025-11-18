@@ -1,3 +1,10 @@
+/**
+ * <b>This</b> java class focuses on giving the user the ability to search, update, add, remove, and display for-
+ * information (in this case player's info) within the application's terminal
+ * <b>Within</b> this class also, when the user tries to search for players, the code will display a message depending on-
+ * if the player entered by the user is within the system
+ */
+
 public class Search extends Edit {//Extends to the "Edit" class for uses
     public Search(String file) {
         this.filename = file;

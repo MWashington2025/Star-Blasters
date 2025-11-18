@@ -2,7 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
+/**
+ * <b>This</b> entire java class once started will display the functions of the code through the application's terminal
+ * <b>Within</b> the "Display" public class, the code will run through all and display all the functions inputted through the code
+ */
+
 public class Display {
+
+    /**
+     * <b>This</b> entire class holds and displays all menu options for a user to interact with from the application's terminal, from adding, viewing, and deleting players
+     * to adding a text file containing player's information
+     */
+
     Scanner scanner = new Scanner(System.in);//Allows a user to enter values
     Search s;
     public Display(String file) {
@@ -59,7 +70,7 @@ public class Display {
         int level = current.getLevel();
         int worldrank = current.getWorldRanking();
 
-        switch (choose) {
+        switch (choose) { //Within the terminal, gives the user options to select which info will be changed and updated
             case "A", "a": avatar = ask("New Avatar: ");
                 break;
             case "L", "l": level = parseInt("New Level: ");
@@ -69,7 +80,7 @@ public class Display {
             default: System.out.println("Invalid choice.");
                 return this;
         }
-        Info updated = new Info(player, avatar, level, worldrank);
+        Info updated = new Info(player, avatar, level, worldrank); //This section will confirm the information has been changed successfully
         s.updatePlayer(player, updated);
         System.out.println("Updated.");
         return this;

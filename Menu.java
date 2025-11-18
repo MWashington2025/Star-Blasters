@@ -4,6 +4,13 @@ import java.awt.event.*;
 import java.sql.*;
 import java.io.File;
 
+/**
+ * <b>Now</b> for this entire java class (Menu), it's just like the previous four java classes, except it extends off of the
+ * "Display" java class and all the information is shown to a user as a graphical user interface (GUI) instead of
+ * displaying in the application's terminal
+ */
+
+
 public class Menu extends JFrame {
     private Display Menu; // Extends the "Display.java" Class
     StringBuilder sb = new StringBuilder();
