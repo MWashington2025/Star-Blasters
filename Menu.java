@@ -120,7 +120,7 @@ public class Menu extends JFrame {
                     playerNames[0]
             );
             if (selectedName == null) return; // Creates a dropdown box with all options that can be changed
-            String[] fields = {"avatar", "class_level", "world_level"};
+            String[] fields = {"avatar_name", "class_level", "world_level"};
             String column = (String) JOptionPane.showInputDialog(
                     this,
                     "Select the field to update:",
